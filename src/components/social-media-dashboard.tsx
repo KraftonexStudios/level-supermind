@@ -23,6 +23,7 @@ import { mockData } from "@/data/mock-data";
 import { PostTypeDropdown } from "./post-type-dropdown";
 import Chart from "react-apexcharts";
 import "../App.css";
+import { Chatbot } from "./Chatbot";
 
 type PostType = "All" | "Carousel" | "Reels" | "Static Image";
 
@@ -524,28 +525,7 @@ export default function SocialMediaDashboard() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleChatSubmit} className="space-y-4">
-                  <div className="flex items-center space-x-2">
-                    <Input
-                      type="text"
-                      placeholder="Ask about your data..."
-                      value={chatInput}
-                      onChange={(e) => setChatInput(e.target.value)}
-                      className="flex-grow h-12"
-                    />
-                    <Button type="submit" className="h-12">
-                      <MessageCircle className="h-4 w-4 mr-2" />
-                      Ask
-                    </Button>
-                  </div>
-                </form>
-                {chatResponse && (
-                  <div className="mt-4 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
-                    <p className="text-gray-700 dark:text-gray-300">
-                      {chatResponse}
-                    </p>
-                  </div>
-                )}
+               <Chatbot />
               </CardContent>
             </Card>
           </TabsContent>
