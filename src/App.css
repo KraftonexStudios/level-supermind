@@ -23,11 +23,20 @@
 }
 .insight_image {
   position: absolute;
-  top: 50%;
-  left: 100%;
+  top: 100%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  width: 130vh;
+  width: 50vw;
   z-index: -1;
   filter: drop-shadow(2px -2px 10px #000000);
   filter: brightness(1.1);
+}
+@media (max-width :1000px ){
+  .insight_image {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+}
 }

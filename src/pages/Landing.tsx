@@ -12,7 +12,7 @@ import ScrollUp from "@/components/Common/ScrollUp";
 
 const Landing = () => {
   return (
-    <div className="relative w-screen h-full">
+    <div className="relative w-screen h-full overflow-hidden">
       <ScrollUp />
       <Hero />
       <Features />
