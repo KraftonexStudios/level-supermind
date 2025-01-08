@@ -21,7 +21,7 @@ interface LangflowClient {
 
 class LangflowClient {
   constructor(applicationToken) {
-    this.baseURL = import.meta.env.VITE_BASE_URL
+    this.baseURL = process.env.VITE_BASE_URL
     this.applicationToken = applicationToken
   }
 
@@ -30,6 +30,8 @@ class LangflowClient {
     headers["Content-Type"] = "application/json"
     
     const url = `${this.baseURL}${endpoint}`
+    console.log('POST:', url, body);
+    
     try {
       const response = await fetch(url, {
         method: 'POST',
