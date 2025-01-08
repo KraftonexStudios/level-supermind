@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [react()],
   resolve: {
     alias: {
@@ -10,7 +10,7 @@ export default defineConfig({
     },
   },
   server: {
-    proxy: {
+    proxy: mode === 'development' ? {
       '/lf': {
         target: 'https://api.langflow.astra.datastax.com',
         changeOrigin: true,
@@ -28,6 +28,6 @@ export default defineConfig({
           })
         }
       }
-    }
+    } : undefined
   }
-})
+}))
