@@ -4,7 +4,6 @@ import { useState } from "react";
 import SectionTitle from "../Common/SectionTitle";
 
 const Video = () => {
-  const [isOpen, setOpen] = useState(false);
 
   return (
     <section className="relative z-10 py-16 md:py-20 lg:py-28">

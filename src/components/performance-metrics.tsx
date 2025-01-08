@@ -9,6 +9,10 @@ const performanceData = Array.from({ length: 12 }, (_, i) => ({
   value: Math.floor(Math.random() * 100) + 50,
 }))
 
+const chartConfig = {
+  // Add your chart configuration here
+}
+
 export function PerformanceMetrics() {
   return (
     <div className="grid gap-4 grid-cols-1 md:grid-cols-3">
@@ -18,7 +22,7 @@ export function PerformanceMetrics() {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold text-white mb-2">31.6K</div>
-          <ChartContainer className="h-[60px] " >
+          <ChartContainer className="h-[60px]" config={chartConfig}>
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={performanceData}>
                 <Line
@@ -40,7 +44,7 @@ export function PerformanceMetrics() {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold text-white mb-2">18.2%</div>
-          <ChartContainer className="h-[60px]">
+          <ChartContainer className="h-[60px]" config={chartConfig}>
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={performanceData}>
                 <Area
@@ -62,7 +66,7 @@ export function PerformanceMetrics() {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold text-white mb-2">52.4K</div>
-          <ChartContainer className="h-[60px]">
+          <ChartContainer className="h-[60px]" config={chartConfig}>
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={performanceData}>
                 <Line

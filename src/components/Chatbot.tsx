@@ -7,17 +7,17 @@ import { Loader2, Send } from 'lucide-react'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 
-
-
-
 const messageVariants = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
   exit: { opacity: 0, x: -10 }
 }
 
-
-
+interface LangflowClient {
+  baseURL: string;
+  applicationToken: string;
+  // ...existing properties...
+}
 
 class LangflowClient {
   constructor(applicationToken) {
