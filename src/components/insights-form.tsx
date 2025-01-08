@@ -5,10 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { InsightRequest, PostType } from "../types/analytics-types"
+import { PostType } from "@/types/analytics"
 
 export function InsightsForm() {
-  const [formData, setFormData] = useState<InsightRequest>({
+  const [formData, setFormData] = useState({
     startDate: "",
     endDate: "",
     postType: "Carousel"
