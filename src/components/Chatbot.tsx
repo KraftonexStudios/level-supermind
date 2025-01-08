@@ -1,6 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import styled from 'styled-components'
+import { Card, CardContent, CardFooter } from './ui/card'
+import { ScrollArea } from '@radix-ui/react-scroll-area'
+import { Loader2, Send } from 'lucide-react'
+import { Input } from './ui/input'
+import { Button } from './ui/button'
 
 
 
@@ -186,11 +191,12 @@ export const Chatbot = () => {
   useEffect(() => {
     scrollToBottom()
   }, [messages])
+
   const langflowClient = new LangflowClient(
     'AstraCS:KfiefWKjkEkKIwLdIHOXJJcj:e1dff3b852eebcd28d815b07fbcfb0c53ced75336b5545823d6d0cc53617bcf9'
   )
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!input.trim()) return
 
@@ -235,27 +241,15 @@ export const Chatbot = () => {
     }
   }
 
-  return (
-    <motion.div 
-      initial={{ opacity: 0 }} 
-      animate={{ opacity: 1 }} 
-      className="min-h-screen bg-gray-100 p-4 flex items-center justify-center"
-    >
-      <motion.div 
-        initial={{ scale: 0.9 }}
-        animate={{ scale: 1 }}
-        className="container max-w-4xl bg-white rounded-xl shadow-lg overflow-hidden"
-      >
-        <motion.div 
-          variants={headerVariants}
-          initial="initial"
-          animate="animate"
-          className="bg-indigo-600 p-4"
-        >
-          <h1 className="text-xl font-bold text-white">AI Assistant</h1>
-        </motion.div>
+  const formatMessage = (content: string) => {
+    // You can implement message formatting here if needed
+    return content
+  }
 
-        <div className="h-[600px] overflow-y-auto p-4 bg-gray-50">
+  return (
+    <Card className="w-full h-full min-h-80 flex flex-col overflow-hidden">
+      <CardContent className="flex-grow p-4 overflow-hidden">
+        <ScrollArea className="h-full w-full pr-4">
           <AnimatePresence>
             {messages.map((msg, index) => (
               <motion.div
@@ -268,10 +262,12 @@ export const Chatbot = () => {
               >
                 <motion.div
                   whileHover={{ scale: 1.01 }}
-                  className={`max-w-[80%] rounded-2xl p-4 ${
+                  className={`max-w-[80%] rounded-lg p-3 ${
                     msg.type === 'user' 
-                      ? 'bg-indigo-600 text-white rounded-br-none' 
-                      : 'bg-white shadow-md rounded-bl-none'
+                      ? 'bg-primary text-primary-foreground' 
+                      : msg.type === 'error'
+                      ? 'bg-destructive text-destructive-foreground'
+                      : 'bg-[#1E293B]'
                   }`}
                 >
                   {formatMessage(msg.content)}
@@ -286,52 +282,31 @@ export const Chatbot = () => {
                 exit={{ opacity: 0 }}
                 className="flex justify-start mb-4"
               >
-                <div className="bg-white shadow-md rounded-2xl rounded-bl-none p-4">
-                  <div className="flex space-x-2">
-                    {[0, 1, 2].map((i) => (
-                      <motion.div
-                        key={i}
-                        variants={loadingVariants}
-                        animate="animate"
-                        style={{ animationDelay: `${i * 0.2}s` }}
-                        className="w-2 h-2 bg-gray-400 rounded-full"
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-            <div ref={messagesEndRef} />
-          </div>
-  
-          <motion.div 
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            className="p-4 border-t border-gray-200 bg-white"
-          >
-            <form onSubmit={handleSubmit} className="flex space-x-4">
-              <motion.input
-                whileFocus={{ scale: 1.01 }}
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                className="dark:text-black flex-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                placeholder="Type your message..."
-                disabled={loading}
-              />
-              <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              type="submit"
-              disabled={loading}
-              className="px-6 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Send
-            </motion.button>
-          </form>
-        </motion.div>
-      </motion.div>
-    </motion.div>
+                <div className="bg-muted rounded-lg p-3">
+                  <Loader2 className="h-5 w-5 animate-spin text-primary" />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <div ref={messagesEndRef} />
+        </ScrollArea>
+      </CardContent>
+      <CardFooter className="p-4 border-t">
+        <form onSubmit={handleSubmit} className="flex w-full space-x-2">
+          <Input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Type your message..."
+            disabled={loading}
+            className="flex-1 dark:bg-[#1E293B]"
+          />
+          <Button type="submit" disabled={loading}>
+            <Send className="h-4 w-4 mr-2" />
+            Send
+          </Button>
+        </form>
+      </CardFooter>
+    </Card>
   )
 }

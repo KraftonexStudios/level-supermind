@@ -7,6 +7,7 @@
 @layer base {
   body {
     font-family: "poppins", sans-serif;
+    overflow-x: hidden;
   }
   :root {
     --background: 0 0% 100%;

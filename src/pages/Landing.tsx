@@ -17,7 +17,7 @@ const Landing = () => {
       <Hero />
       <Features />
       <Video />
-      <Brands />
+      {/* <Brands /> */}
       <AboutSectionOne />
       <AboutSectionTwo />
       <Testimonials />

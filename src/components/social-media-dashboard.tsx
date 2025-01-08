@@ -271,14 +271,6 @@ export default function SocialMediaDashboard() {
     `;
   };
 
-  const handleChatSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // This is a placeholder. In a real application, this would be processed by an AI model.
-    setChatResponse(
-      `Here's some information about ${chatInput}: [AI-generated response would go here]`
-    );
-    setChatInput("");
-  };
 
   return (
     <div className="min-h-screen pt-[20vh] bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-8">
@@ -520,7 +512,7 @@ export default function SocialMediaDashboard() {
           >
             <Card className="w-full h-full">
               <CardHeader>
-                <CardTitle className="text-heading2-color text-3xl font-semibold">
+                <CardTitle className=" text-heading2-color text-3xl font-semibold">
                   Data Chatbot
                 </CardTitle>
               </CardHeader>

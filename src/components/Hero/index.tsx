@@ -7,7 +7,7 @@ const Hero = () => {
         id="home"
         className="relative z-10 h-[100vh] overflow-hidden bg-white pb-16 pt-[120px] dark:bg-gray-950 md:pb-[120px] md:pt-[150px] xl:pb-[160px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px]"
       >
-        <div className="container">
+        <div className="w-screen flex justify-center">
           <div className="mx-4 flex flex-wrap">
             <div className="w-full px-4">
               <div className="mx-auto max-w-[800px] text-center">
@@ -279,7 +279,7 @@ const Hero = () => {
             </defs>
           </svg>
         </div>
-        <div className="insight_image">
+        <div className="insight_image w-full h-full flex justify-center items-center">
           <img className="" src="../../../Insights.png" alt="" />
         </div>
       </section>
