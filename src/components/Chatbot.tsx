@@ -21,7 +21,7 @@ interface LangflowClient {
 
 class LangflowClient {
   constructor(applicationToken) {
-    this.baseURL = ''  // Empty since we're using proxy
+    this.baseURL = import.meta.env.VITE_BASE_URL
     this.applicationToken = applicationToken
   }
 
