@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Download, MessageCircle } from "lucide-react";
+import { Download,  } from "lucide-react";
 import { Activity, TrendingUp, Users } from "lucide-react";
 import {
   Table,
@@ -17,7 +17,7 @@ import {
   processReachData,
   processEngagementRate,
 } from "../lib/utils";
-import { Input } from "@/components/ui/input";
+// import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
 import { mockData } from "@/data/mock-data";
 import { PostTypeDropdown } from "./post-type-dropdown";
@@ -55,8 +55,8 @@ const MetricCard = ({
 
 export default function SocialMediaDashboard() {
   const [selectedPostType, setSelectedPostType] = useState<PostType>("All");
-  const [chatInput, setChatInput] = useState("");
-  const [chatResponse, setChatResponse] = useState("");
+  // const [chatInput, setChatInput] = useState("");
+  // const [chatResponse, setChatResponse] = useState("");
 
   const filteredData =
     selectedPostType === "All"
@@ -377,6 +377,8 @@ export default function SocialMediaDashboard() {
                     </CardHeader>
                     <CardContent>
                       <Chart
+                      // @ts-expect-error
+
                         options={barChartOptions}
                         series={barChartSeries}
                         type="bar"
@@ -398,6 +400,7 @@ export default function SocialMediaDashboard() {
                     </CardHeader>
                     <CardContent>
                       <Chart
+                      // @ts-expect-error
                         options={areaChartOptions}
                         series={areaChartSeries}
                         type="area"
