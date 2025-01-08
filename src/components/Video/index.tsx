@@ -7,7 +7,7 @@ const Video = () => {
   // const [open, setOpen] = useState(false);
 
   return (
-    <section className="relative z-10 py-16 md:py-20 lg:py-28">
+    <section className="relative z-10 py-16 md:py-20 lg:py-28 flex justify-center items-center">
       <div className="container">
         <SectionTitle
           title="We are ready to help"

@@ -1,6 +1,6 @@
 const AboutSectionTwo = () => {
   return (
-    <section className="py-16 px-10 md:py-20 lg:py-28">
+    <section className="py-16 px-10 md:py-20 lg:py-28 flex justify-center items-center">
       <div className="container">
         <div className="mx-4 flex flex-wrap items-center">
           <div className="w-full px-4 lg:w-1/2">

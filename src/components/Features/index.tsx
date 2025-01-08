@@ -5,7 +5,10 @@ import featuresData from "./featuresData";
 const Features = () => {
   return (
     <>
-      <section id="features" className="py-16 md:py-20 lg:py-28 px-10">
+      <section
+        id="features"
+        className="py-16 md:py-20 lg:py-28 px-10 flex justify-center items-center"
+      >
         <div className="container">
           <SectionTitle
             title="Main Features"
@@ -13,7 +16,7 @@ const Features = () => {
             center
           />
 
-          <div className="grid place-items-center grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid  grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
             {featuresData.map((feature) => (
               <SingleFeature key={feature.id} feature={feature} />
             ))}

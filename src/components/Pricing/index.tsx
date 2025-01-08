@@ -10,7 +10,7 @@ const Pricing = () => {
   return (
     <section
       id="pricing"
-      className="relative z-10 py-16 md:py-20 lg:py-28 px-10"
+      className="relative z-10 py-16 md:py-20 lg:py-28 flex justify-center items-center"
     >
       <div className="container">
         <SectionTitle
