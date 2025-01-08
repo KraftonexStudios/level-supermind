@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ChartContainer } from "@/components/ui/chart"
-import { ResponsiveContainer, LineChart, Line, AreaChart, Area, Label } from "recharts"
+import { ResponsiveContainer, LineChart, Line, AreaChart, Area } from "recharts"
 
 const performanceData = Array.from({ length: 12 }, (_, i) => ({
   name: i + 1,
