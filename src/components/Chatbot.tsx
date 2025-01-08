@@ -74,8 +74,10 @@ export const Chatbot = () => {
   }, [messages])
 
   const langflowClient = new LangflowClient(
-    process.env.VITE_LANGFLOW_APPLICATION_TOKEN
+    import.meta.env.VITE_LANGFLOW_APPLICATION_TOKEN
   )
+
+  const apiUrl = 'https://api.production.com';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
