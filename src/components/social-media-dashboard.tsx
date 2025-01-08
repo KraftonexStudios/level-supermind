@@ -85,7 +85,7 @@ export default function SocialMediaDashboard() {
 
   const barChartOptions = {
     chart: {
-      type: "bar",
+      type: "bar" as const,
       height: 350,
       stacked: true,
       toolbar: {
@@ -169,7 +169,7 @@ export default function SocialMediaDashboard() {
   const areaChartOptions = {
     chart: {
       height: 350,
-      type: "area",
+      type: "area" as const,
       animations: {
         enabled: true,
         easing: "easeinout",
@@ -214,7 +214,7 @@ export default function SocialMediaDashboard() {
   const pieChartOptions = {
     chart: {
       width: 380,
-      type: "pie",
+      type: "pie" as const,
       animations: {
         enabled: true,
         easing: "easeinout",

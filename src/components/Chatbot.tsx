@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import styled from 'styled-components'
+// import styled from 'styled-components'
 import { Card, CardContent, CardFooter } from './ui/card'
 import { ScrollArea } from '@radix-ui/react-scroll-area'
 import { Loader2, Send } from 'lucide-react'
@@ -16,127 +16,8 @@ const messageVariants = {
   exit: { opacity: 0, x: -10 }
 }
 
-const loadingVariants = {
-  animate: {
-    scale: [1, 1.2, 1],
-    transition: {
-      duration: 0.6,
-      repeat: Infinity
-    }
-  }
-}
 
-const headerVariants = {
-  initial: { y: -20, opacity: 0 },
-  animate: { 
-    y: 0, 
-    opacity: 1,
-    transition: { duration: 0.5 }
-  }
-}
 
-const MessageCard = styled.div`
-  text-align: left;
-  line-height: 1.6;
-`
-
-const Section = styled.div`
-  margin: 1.5rem 0;
-`
-
-const Table = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1rem 0;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-`
-
-const Th = styled.th`
-  background: #f8f9fa;
-  padding: 12px;
-  text-align: left;
-  border-bottom: 2px solid #dee2e6;
-`
-
-const Td = styled.td`
-  padding: 12px;
-  border-bottom: 1px solid #dee2e6;
-`
-
-const Title = styled.h2`
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #2d3748;
-  margin: 1rem 0;
-`
-
-const List = styled.ul`
-  list-style-type: disc;
-  padding-left: 1.5rem;
-  margin: 1rem 0;
-  
-`
-const formatMessage = (content) => {
-  if (typeof content !== 'string') return content;
-
-  const sections = content.split('**').filter(Boolean);
-  
-  return (
-    <MessageCard>
-      {sections.map((section, idx) => {
-        if (section.includes('|')) {
-          // Parse table
-          const rows = section.split('\n').filter(row => row.includes('|'));
-          return (
-            <Section key={idx}>
-              {rows[0].includes('###') && (
-                <Title>{rows[0].replace('###', '').trim()}</Title>
-              )}
-              <Table>
-                <thead>
-                  <tr>
-                    {rows[1].split('|').filter(Boolean).map((cell, i) => (
-                      <Th key={i}>{cell.trim()}</Th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {rows.slice(3).map((row, i) => (
-                    <tr key={i}>
-                      {row.split('|').filter(Boolean).map((cell, j) => (
-                        <Td key={j}>{cell.trim()}</Td>
-                      ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </Table>
-              </Section>
-            );
-          } else if (section.includes('*')) {
-            // Parse list
-            return (
-              <Section key={idx}>
-                <List>
-                  {section.split('*').filter(Boolean).map((item, i) => (
-                    <li key={i}>{item.trim()}</li>
-                  ))}
-                </List>
-              </Section>
-            );
-          } else {
-            // Parse title or text
-            return (
-              <Section key={idx}>
-                <Title>{section.trim()}</Title>
-              </Section>
-            );
-          }
-        })}
-      </MessageCard>
-    );
-  };
 
 class LangflowClient {
   constructor(applicationToken) {
