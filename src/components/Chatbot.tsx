@@ -64,6 +64,7 @@ export const Chatbot = () => {
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(false)
   const messagesEndRef = useRef(null)
+  const ws = useRef(null)
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -73,11 +74,26 @@ export const Chatbot = () => {
     scrollToBottom()
   }, [messages])
 
+  useEffect(() => {
+    ws.current = new WebSocket('ws://localhost:5173')
+    ws.current.onopen = () => console.log('WebSocket connection established')
+    ws.current.onclose = () => console.log('WebSocket connection closed')
+    ws.current.onerror = (error) => console.error('WebSocket error:', error)
+    ws.current.onmessage = (event) => {
+      const message = JSON.parse(event.data)
+      setMessages(prev => [...prev, { type: 'bot', content: message.content }])
+    }
+
+    return () => {
+      ws.current.close()
+    }
+  }, [])
+
   const langflowClient = new LangflowClient(
     import.meta.env.VITE_LANGFLOW_APPLICATION_TOKEN
   )
 
-  const apiUrl = 'https://api.production.com';
+  // const apiUrl = 'https://api.production.com';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
