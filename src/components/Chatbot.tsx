@@ -74,7 +74,7 @@ export const Chatbot = () => {
   }, [messages])
 
   const langflowClient = new LangflowClient(
-    'AstraCS:KfiefWKjkEkKIwLdIHOXJJcj:e1dff3b852eebcd28d815b07fbcfb0c53ced75336b5545823d6d0cc53617bcf9'
+    process.env.VITE_LANGFLOW_APPLICATION_TOKEN
   )
 
   const handleSubmit = async (e: React.FormEvent) => {
